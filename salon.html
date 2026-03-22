@@ -3,220 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aura | Salon & Styling Studio</title>
+<title>Aura | Premium Salon & Styling Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 /* --- BASE & VARIABLES --- */
 :root {
-  --bg-color: #0a0a0a; /* Deep Cinematic Black */
-  --surface: #171717; /* Slightly lighter for cards */
-  --accent: #d4af37; /* Metallic Gold */
-  --accent-hover: #b5952f;
+  --bg-color: #0a0a0a; 
+  --surface: #171717; 
+  --accent: #d4af37; 
+  --accent-hover: #f1c40f;
   --text-main: #f3f4f6;
   --text-muted: #9ca3af;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  line-height: 1.6;
-}
-
-h1, h2, h3, .brand {
-  font-family: 'Playfair Display', serif;
-  font-weight: 600;
-}
+h1, h2, h3, .brand { font-family: 'Playfair Display', serif; font-weight: 600; }
 
 /* --- NAVIGATION --- */
-nav {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  padding: 25px 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
-}
-
-.brand {
-  font-size: 1.8rem;
-  color: var(--accent);
-  letter-spacing: 2px;
-  text-decoration: none;
-}
-
-.nav-links a {
-  color: var(--text-main);
-  text-decoration: none;
-  margin-left: 30px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: var(--accent);
-}
+nav { position: absolute; top: 0; width: 100%; padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.brand { font-size: 2rem; color: var(--accent); letter-spacing: 3px; text-decoration: none; }
+.nav-links a { color: var(--text-main); text-decoration: none; margin-left: 35px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s ease; }
+.nav-links a:hover { color: var(--accent); }
 
 /* --- HERO SECTION --- */
-header {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 20px;
-  /* Cinematic gradient simulating studio lighting */
-  background: radial-gradient(circle at center, #1f1f1f 0%, var(--bg-color) 70%);
-  border-bottom: 1px solid #333;
-}
+header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; background: radial-gradient(circle at center, #1f1f1f 0%, var(--bg-color) 80%); border-bottom: 1px solid #222; position: relative; }
+header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.02" fill-rule="evenodd"%3E%3Ccircle cx="3" cy="3" r="3"/%3E%3Ccircle cx="13" cy="13" r="3"/%3E%3C/g%3E%3C/svg%3E'); z-index: 0; }
+header h1, header p, header button { z-index: 1; }
 
-header h1 {
-  font-size: 4.5rem;
-  margin-bottom: 15px;
-  letter-spacing: 1px;
-}
+header h1 { font-size: 5rem; margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; }
+header p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; font-weight: 300; letter-spacing: 1px; }
 
-header p {
-  font-size: 1.2rem;
-  color: var(--text-muted);
-  max-width: 500px;
-  margin-bottom: 40px;
-  font-weight: 300;
-}
-
-.btn {
-  background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 15px 35px;
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-  background: var(--accent);
-  color: var(--bg-color);
-}
+.btn { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 16px 40px; font-size: 0.9rem; font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all 0.4s ease; }
+.btn:hover { background: var(--accent); color: var(--bg-color); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(212, 175, 55, 0.15); }
 
 /* --- SERVICES MENU --- */
-section {
-  padding: 100px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
+section { padding: 120px 20px; max-width: 1100px; margin: auto; }
+.section-title { text-align: center; font-size: 2.8rem; margin-bottom: 20px; color: var(--accent); }
+.section-subtitle { text-align: center; color: var(--text-muted); font-size: 1rem; letter-spacing: 1px; margin-bottom: 60px; text-transform: uppercase; }
 
-.section-title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 60px;
-  color: var(--accent);
-}
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px; }
+.menu-item { background: var(--surface); padding: 40px; border-radius: 4px; border: 1px solid #262626; transition: all 0.4s ease; }
+.menu-item:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.menu-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 15px; border-bottom: 1px dashed #404040; padding-bottom: 15px; }
+.menu-header h3 { font-size: 1.4rem; letter-spacing: 1px; color: var(--text-main); }
+.price { color: var(--accent); font-size: 1.3rem; font-family: 'Playfair Display', serif; }
+.menu-item p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 40px;
-}
-
-.menu-item {
-  background: var(--surface);
-  padding: 30px;
-  border-radius: 4px;
-  border: 1px solid #262626;
-  transition: transform 0.3s ease;
-}
-
-.menu-item:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent);
-}
-
-.menu-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  border-bottom: 1px dashed #404040;
-  padding-bottom: 10px;
-}
-
-.menu-header h3 {
-  font-size: 1.3rem;
-  letter-spacing: 1px;
-}
-
-.price {
-  color: var(--accent);
-  font-size: 1.2rem;
-  font-family: 'Playfair Display', serif;
-}
-
-.menu-item p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
+/* --- VIBE / GALLERY SECTION (New) --- */
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+.gallery-img { background-color: #1f1f1f; height: 300px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #333; font-family: 'Inter', sans-serif; letter-spacing: 2px; transition: transform 0.4s ease; border: 1px solid #262626; }
+.gallery-img:hover { transform: scale(1.02); border-color: #404040; }
 
 /* --- FOOTER --- */
-footer {
-  text-align: center;
-  padding: 50px 20px;
-  background: var(--surface);
-  border-top: 1px solid #262626;
-}
+footer { text-align: center; padding: 80px 20px 40px; background: var(--surface); border-top: 1px solid #262626; }
+footer .brand { display: block; margin-bottom: 20px; font-size: 2.5rem; }
+footer p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 10px; letter-spacing: 1px; }
 
-footer .brand {
-  display: block;
-  margin-bottom: 15px;
-}
-
-footer p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-bottom: 5px;
-}
-
-.back-btn {
-  display: inline-block;
-  margin-top: 30px;
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.9rem;
-  border-bottom: 1px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.back-btn:hover {
-  color: var(--text-main);
-  border-bottom: 1px solid var(--text-main);
-}
+.back-btn { display: inline-block; margin-top: 40px; color: var(--text-muted); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid transparent; transition: all 0.3s ease; padding-bottom: 5px; }
+.back-btn:hover { color: var(--accent); border-bottom: 1px solid var(--accent); }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  header h1 { font-size: 3rem; }
-  nav { flex-direction: column; gap: 15px; padding: 20px; }
+  header h1 { font-size: 3.5rem; }
+  nav { flex-direction: column; gap: 20px; padding: 20px; }
   .nav-links a { margin: 0 10px; }
+  .gallery-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -227,8 +83,8 @@ footer p {
   <a href="#" class="brand">AURA.</a>
   <div class="nav-links">
     <a href="#services">Services</a>
-    <a href="#about">The Studio</a>
-    <a href="#book">Book</a>
+    <a href="#vibe">The Studio</a>
+    <a href="#">Book</a>
   </div>
 </nav>
 
@@ -240,13 +96,13 @@ footer p {
 
 <section id="services">
   <h2 class="section-title">Studio Menu</h2>
+  <p class="section-subtitle">Tailored treatments for the modern individual</p>
   
   <div class="menu-grid">
-    
     <div class="menu-item">
       <div class="menu-header">
         <h3>Precision Haircut</h3>
-        <span class="price">xyz</span>
+        <span class="price">$xyz</span>
       </div>
       <p>Consultation, wash, tailored cut, and a hot towel finish.</p>
     </div>
@@ -254,7 +110,7 @@ footer p {
     <div class="menu-item">
       <div class="menu-header">
         <h3>Color & Highlights</h3>
-        <span class="price">xyz</span>
+        <span class="price">$xyz+</span>
       </div>
       <p>Custom color formulation to add depth, dimension, and shine to your hair.</p>
     </div>
@@ -262,7 +118,7 @@ footer p {
     <div class="menu-item">
       <div class="menu-header">
         <h3>Beard Sculpting</h3>
-        <span class="price">xyz</span>
+        <span class="price">$xyz</span>
       </div>
       <p>Trimming, shaping, and edging with straight razor precision.</p>
     </div>
@@ -270,11 +126,23 @@ footer p {
     <div class="menu-item">
       <div class="menu-header">
         <h3>Signature Styling & Profile</h3>
-        <span class="price">xyz</span>
+        <span class="price">$xyz</span>
       </div>
-      <p>A complete hair and styling consultation to match your personal aesthetic—perfect for elevating everything from rugged leather jackets to vintage denim and modern streetwear.</p>
+      <p>A complete hair and styling consultation to match your personal aesthetic—perfect for elevating everything from modern streetwear to vintage looks.</p>
     </div>
+  </div>
+</section>
 
+<section id="vibe" style="background-color: #0d0d0d; padding-bottom: 120px;">
+  <div style="max-width: 1100px; margin: auto; padding: 0 20px;">
+    <h2 class="section-title" style="margin-bottom: 10px;">The Experience</h2>
+    <p class="section-subtitle">More than just a haircut.</p>
+    
+    <div class="gallery-grid">
+      <div class="gallery-img">[ Image: Salon Interior ]</div>
+      <div class="gallery-img">[ Image: Styling Details ]</div>
+      <div class="gallery-img">[ Image: Happy Client ]</div>
+    </div>
   </div>
 </section>
 
@@ -283,6 +151,7 @@ footer p {
   <p>123 Style Avenue, Creative District</p>
   <p>Open Tuesday - Saturday | 10 AM - 7 PM</p>
   
+  <br>
   <a href="index.html" class="back-btn">← Back to Emon Web Studio</a>
 </footer>
 

@@ -1,187 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emon Web Studio | Custom Websites for Local Businesses</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root { 
-    --primary: #2563eb; 
-    --primary-hover: #1d4ed8; 
-    --dark: #0f172a; 
-    --dark-lighter: #1e293b;
-    --light: #f8fafc; 
-    --text: #334155; 
-    --text-light: #64748b; 
-  }
-  
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Poppins', sans-serif; background-color: var(--light); color: var(--text); line-height: 1.6; overflow-x: hidden; }
-  
-  /* Navigation */
-  nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 15px rgba(0,0,0,0.05); z-index: 1000; }
-  .logo { font-size: 1.5rem; font-weight: 700; color: var(--dark); text-decoration: none; }
-  .logo span { color: var(--primary); }
-  .nav-links { display: flex; gap: 30px; }
-  .nav-links a { color: var(--dark); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.3s ease; }
-  .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-  
-  /* Buttons */
-  button, .btn { display: inline-block; background: var(--primary); color: white; font-family: 'Poppins', sans-serif; font-weight: 600; text-decoration: none; border: none; padding: 14px 32px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2); }
-  button:hover, .btn:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3); }
-  .btn-outline { background: transparent; color: white; border: 2px solid white; box-shadow: none; }
-  .btn-outline:hover { background: white; color: var(--dark); }
-
-  /* Hero Section */
-  header { margin-top: 70px; background: linear-gradient(135deg, var(--dark) 0%, var(--dark-lighter) 100%); color: white; padding: 160px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; }
-  header::after { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, rgba(0,0,0,0) 70%); top: -100px; right: -100px; border-radius: 50%; }
-  header h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -1px; max-width: 800px; line-height: 1.2; z-index: 1; }
-  header p { font-size: 1.25rem; color: #cbd5e1; max-width: 600px; margin-bottom: 40px; z-index: 1; }
-  .hero-buttons { display: flex; gap: 15px; z-index: 1; }
-
-  /* Sections */
-  section { padding: 100px 20px; max-width: 1200px; margin: auto; }
-  .bg-white { background-color: white; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); margin: 40px auto; padding: 80px 40px; }
-  section h2 { font-size: 2.5rem; color: var(--dark); text-align: center; margin-bottom: 15px; font-weight: 700; }
-  section h2::after { content: ''; display: block; width: 80px; height: 4px; background: var(--primary); margin: 15px auto 50px auto; border-radius: 2px; }
-  .subtitle { text-align: center; color: var(--text-light); font-size: 1.1rem; max-width: 700px; margin: -30px auto 50px auto; }
-
-  /* Grids */
-  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
-  
-  /* Cards */
-  .card { background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: center; }
-  .card:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
-  .card-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
-  .card h3 { color: var(--dark); font-size: 1.4rem; margin-bottom: 15px; }
-
-  /* Process Steps */
-  .process-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; }
-  .step-number { background: var(--primary); color: white; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; border-radius: 50%; margin-bottom: 20px; }
-  
-  /* Footer */
-  footer { background: var(--dark); color: #94a3b8; padding: 60px 20px 30px; margin-top: 80px; }
-  .footer-content { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
-  .footer-col h4 { color: white; font-size: 1.2rem; margin-bottom: 20px; }
-  .footer-col p, .footer-col a { color: #94a3b8; text-decoration: none; display: block; margin-bottom: 10px; transition: color 0.3s ease; }
-  .footer-col a:hover { color: white; }
-  .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #334155; font-size: 0.9rem; }
-
-  /* Animations */
-  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  .animate { animation: fadeInUp 0.8s ease-out forwards; }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    header h1 { font-size: 2.5rem; }
-    .hero-buttons { flex-direction: column; }
-    nav { flex-direction: column; gap: 15px; }
-    .nav-links { gap: 15px; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heartory | Every Gift Tells a Story</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="logo">Emon<span>Studio</span></a>
-  <div class="nav-links">
-    <a href="index.html" class="active">Home</a>
-    <a href="services.html">Services</a>
-    <a href="contact.html">Contact</a>
-  </div>
-</nav>
+    <div id="loader" class="loader-overlay">
+        <div class="loader-content">
+            <h1 class="loader-brand">Heartory</h1>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <p>Crafting your story...</p>
+        </div>
+    </div>
 
-<header class="animate">
-  <h1>Turn Your Local Business Into a Digital Powerhouse</h1>
-  <p>Affordable, high-performing, and stunning websites crafted specifically for Cafes, Bakeries, Salons, and Local Services.</p>
-  <div class="hero-buttons">
-    <a href="contact.html" class="btn">Get a Free Quote</a>
-    <a href="services.html" class="btn btn-outline">View Portfolio</a>
-  </div>
-</header>
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-heart" style="color: var(--accent-pink); font-size: 1.2rem; margin-right: 8px;"></i>
+                Heartory
+            </div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#experience">The Experience</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="btn-outline mobile-hide">Track Order</button>
+        </div>
+    </header>
 
-<section id="why-us">
-  <h2>Why Choose Me?</h2>
-  <p class="subtitle">I don't just build websites; I build digital storefronts that help you get more customers and save you time.</p>
-  
-  <div class="grid-3">
-    <div class="card">
-      <span class="card-icon">⚡</span>
-      <h3>Lightning Fast</h3>
-      <p>Your customers won't wait. I build highly optimized websites that load instantly on all devices, keeping your visitors engaged.</p>
-    </div>
-    <div class="card">
-      <span class="card-icon">📱</span>
-      <h3>Mobile First</h3>
-      <p>Over 70% of local searches happen on phones. Your website will look and function perfectly on any screen size.</p>
-    </div>
-    <div class="card">
-      <span class="card-icon">🤝</span>
-      <h3>Zero Headaches</h3>
-      <p>You run your business; I run the tech. From hosting to domain setup and ongoing maintenance, I handle it all for you.</p>
-    </div>
-  </div>
-</section>
+    <section class="hero" id="home">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        <div class="hero-content reveal">
+            <span class="badge">Premium Indian Gifting</span>
+            <h1>Every gift tells a <span class="text-italic">story</span>.</h1>
+            <p>We don’t just send gifts, we deliver emotions. Craft a beautifully personalized experience, or send us your own special item to be packaged with unparalleled luxury.</p>
+        </div>
+    </section>
 
-<section id="process" class="bg-white">
-  <h2>How It Works</h2>
-  <p class="subtitle">Getting your business online should be simple. Here is my streamlined 3-step process.</p>
-  
-  <div class="grid-3">
-    <div class="process-step">
-      <div class="step-number">1</div>
-      <h3>Discovery Call</h3>
-      <p>We chat about your business goals, your brand vibe, and what you need your website to achieve for your customers.</p>
+    <div class="trust-banner reveal">
+        <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Pan-India Delivery</div>
+        <div class="trust-item"><i class="fa-solid fa-gem"></i> Premium Packaging</div>
+        <div class="trust-item"><i class="fa-solid fa-feather"></i> Handwritten Notes</div>
+        <div class="trust-item"><i class="fa-solid fa-shield-heart"></i> 10,000+ Stories Delivered</div>
     </div>
-    <div class="process-step">
-      <div class="step-number">2</div>
-      <h3>Design & Build</h3>
-      <p>I get to work designing a custom, modern website. I'll share a live demo with you so you can see the magic happen.</p>
-    </div>
-    <div class="process-step">
-      <div class="step-number">3</div>
-      <h3>Launch & Grow</h3>
-      <p>Once you love it, we hit publish! I ensure everything is optimized for Google so local customers can easily find you.</p>
-    </div>
-  </div>
-</section>
 
-<section id="about" style="text-align: center;">
-  <h2>Meet Your Developer</h2>
-  <div style="max-width: 800px; margin: auto;">
-    <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--dark);">Hi, I'm Emon 👋</h3>
-    <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 30px;">
-      I specialize in building simple, professional, and fast-loading websites for local businesses. Many small business owners are overwhelmed by the technical side of the web. My goal is to bridge that gap.
-    </p>
-    <a href="contact.html" class="btn">Let's Work Together</a>
-  </div>
-</section>
+    <main class="container layout-grid" id="experience">
+        
+        <div class="form-sections">
+            
+            <div class="mode-toggle-wrapper reveal">
+                <button class="mode-toggle active" id="btnMode1" onclick="app.setMode('boxes')">
+                    <i class="fa-solid fa-box-open"></i> Curated Gift Boxes
+                </button>
+                <button class="mode-toggle" id="btnMode2" onclick="app.setMode('personal')">
+                    <i class="fa-solid fa-hand-holding-heart"></i> Send Your Own Gift
+                </button>
+            </div>
 
-<footer>
-  <div class="footer-content">
-    <div class="footer-col">
-      <a href="index.html" class="logo" style="color: white;">Emon<span style="color: var(--primary);">Studio</span></a>
-      <p style="margin-top: 15px;">Affordable, high-performing websites for local businesses. Let's grow your digital presence.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <a href="index.html">Home</a>
-      <a href="services.html">Services & Portfolio</a>
-      <a href="contact.html">Contact Me</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <p>Email: emon.studiohq@gmail.com</p>
-      <p>Instagram: @emon.studiohq</p>
-      <p>WhatsApp: Coming Soon</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2026 Emon Web Studio. All rights reserved.</p>
-  </div>
-</footer>
+            <section class="card-section reveal" id="sectionBoxes">
+                <div class="step-indicator">Step 01</div>
+                <h2 class="section-title">Choose Your Canvas</h2>
+                <p class="section-subtitle">Select the foundation of your story.</p>
+                
+                <div class="options-grid box-grid">
+                    <div class="option-card active" id="box-basic" onclick="app.selectBase('basic')">
+                        <div class="card-header">
+                            <i class="fa-solid fa-box card-icon"></i>
+                            <h4>Basic Box</h4>
+                            <p class="tagline">Budget Gift</p>
+                        </div>
+                        <ul class="box-contents">
+                            <li>💌 1–2 page letter</li>
+                            <li>✉️ Envelope</li>
+                            <li>🍫 1 small chocolate</li>
+                            <li>🎀 Basic wrapping</li>
+                        </ul>
+                        <p class="box-insight">💡 Small but feels special.</p>
+                        <p class="price">₹199</p>
+                    </div>
 
+                    <div class="option-card popular-card" id="box-premium" onclick="app.selectBase('premium')">
+                        <div class="popular-badge">Main Seller</div>
+                        <div class="card-header">
+                            <i class="fa-solid fa-gift card-icon"></i>
+                            <h4>Premium Box</h4>
+                            <p class="tagline">Balanced Gift + Emotion</p>
+                        </div>
+                        <ul class="box-contents">
+                            <li>💌 3–5 pg handwritten letter</li>
+                            <li>✉️ Premium envelope</li>
+                            <li>🍫 2 chocolates</li>
+                            <li>🖼️ 1 photo</li>
+                            <li>🎀 Premium wrapping</li>
+                        </ul>
+                        <p class="box-insight">💡 This is where people feel value.</p>
+                        <p class="price">₹399</p>
+                    </div>
+
+                    <div class="option-card" id="box-luxury" onclick="app.selectBase('luxury')">
+                        <div class="card-header">
+                            <i class="fa-solid fa-crown card-icon"></i>
+                            <h4>Luxury Box</h4>
+                            <p class="tagline">High Impact Experience</p>
+                        </div>
+                        <ul class="box-contents">
+                            <li>💌 6–10 pg handwritten letter</li>
+                            <li>✉️ Luxury envelopes</li>
+                            <li>🍫 3–4 chocolates / small gifts</li>
+                            <li>🖼️ Multiple photos</li>
+                            <li>🕯️ Wax seal</li>
+                            <li>🎁 Premium aesthetic box</li>
+                        </ul>
+                        <p class="box-insight">💡 A real surprise gift.</p>
+                        <p class="price">₹699</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card-section hidden" id="sectionPersonal">
+                <div class="step-indicator">Step 01</div>
+                <h2 class="section-title">Your Item, Our Art</h2>
+                <p class="section-subtitle">Courier your personal gift to us. We will professionally package and deliver it.</p>
+                
+                <div class="input-group">
+                    <label for="personalItemDesc">What treasure are you sending us?</label>
+                    <input type="text" id="personalItemDesc" placeholder="e.g., A vintage watch and a bottle of Dior">
+                </div>
+                <div class="input-group">
+                    <label for="personalItemInst">Any specific curating instructions?</label>
+                    <textarea id="personalItemInst" placeholder="e.g., Please place dried lavender next to the watch..."></textarea>
+                </div>
+
+                <h3 class="subsection-title" style="margin-top:2rem;">Select Presentation Tier</h3>
+                <div class="options-grid">
+                    <div class="option-card active" id="pack-basic" onclick="app.selectBase('basic')">
+                        <i class="fa-solid fa-box card-icon"></i>
+                        <h4>Classic Packing</h4>
+                        <p class="price">₹99</p>
+                    </div>
+                    <div class="option-card" id="pack-premium" onclick="app.selectBase('premium')">
+                        <i class="fa-solid fa-gift card-icon"></i>
+                        <h4>Aesthetic Packing</h4>
+                        <p class="price">₹199</p>
+                    </div>
+                    <div class="option-card" id="pack-luxury" onclick="app.selectBase('luxury')">
+                        <i class="fa-solid fa-crown card-icon"></i>
+                        <h4>Luxury Presentation</h4>
+                        <p class="price">₹349</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card-section reveal">
+                <div class="step-indicator">Step 02</div>
+                <h2 class="section-title">Customize Your Story</h2>
+                <p class="section-subtitle">Type your letters below. (Adjust pages to match your box limits or upgrade!)</p>
+                
+                <div class="flex-row">
+                    <div class="input-group width-auto">
+                        <label for="pageCount">Number of Pages</label>
+                        <input type="number" id="pageCount" min="1" max="15" value="1" onchange="app.updatePages()">
+                    </div>
+                    <div class="info-text">
+                        <i class="fa-solid fa-circle-info"></i> 1-2 pgs: Free | 3-5: ₹80 | 6-10: ₹180 | 11-15: ₹350
+                    </div>
+                </div>
+
+                <div class="options-grid">
+                    <div class="option-card active" id="letter-printed" onclick="app.selectLetterType('printed')">
+                        <i class="fa-solid fa-print card-icon"></i>
+                        <h4>Classic Print</h4>
+                        <p class="price">Included</p>
+                    </div>
+                    <div class="option-card" id="letter-handwritten" onclick="app.selectLetterType('handwritten')">
+                        <i class="fa-solid fa-pen-nib card-icon"></i>
+                        <h4>Artisan Handwritten</h4>
+                        <p class="price">+₹120</p>
+                    </div>
+                </div>
+
+                <div class="tabs-container">
+                    <div class="tabs-header" id="tabsHeader"></div>
+                    <div class="tabs-body" id="tabsBody"></div>
+                </div>
+            </section>
+
+            <section class="card-section reveal">
+                <div class="step-indicator">Step 03</div>
+                <h2 class="section-title">Elevate the Experience</h2>
+                <p class="section-subtitle">Add extra surprises to make it unforgettable.</p>
+                
+                <div class="options-grid add-ons-grid">
+                    <div class="option-card addon-card" id="addon-perfume" onclick="app.toggleAddon('perfume')">
+                        <i class="fa-solid fa-spray-can-sparkles card-icon"></i>
+                        <h4>Luxury Perfume</h4>
+                        <p class="price">+₹499</p>
+                    </div>
+                    <div class="option-card addon-card" id="addon-customGift" onclick="app.toggleAddon('customGift')">
+                        <i class="fa-solid fa-wand-magic-sparkles card-icon"></i>
+                        <h4>Custom Mini-Gift</h4>
+                        <p class="price">+₹299</p>
+                    </div>
+                    <div class="option-card addon-card" id="addon-extraChoco" onclick="app.toggleAddon('extraChoco')">
+                        <i class="fa-solid fa-cookie-bite card-icon"></i>
+                        <h4>Extra Chocolates</h4>
+                        <p class="price">+₹99</p>
+                    </div>
+                    <div class="option-card addon-card" id="addon-photo" onclick="app.toggleAddon('photo')">
+                        <i class="fa-solid fa-camera-retro card-icon"></i>
+                        <h4>Extra Polaroid</h4>
+                        <p class="price">+₹30</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card-section reveal" style="margin-bottom: 0;">
+                <div class="step-indicator">Step 04</div>
+                <h2 class="section-title">Where Does the Story Go?</h2>
+                
+                <div class="delivery-toggles">
+                    <label class="custom-radio">
+                        <input type="radio" name="deliveryMode" value="self" onchange="app.setDeliveryMode('self')"> 
+                        <span class="radio-btn"></span>
+                        Send to Me
+                    </label>
+                    <label class="custom-radio">
+                        <input type="radio" name="deliveryMode" value="someone" checked onchange="app.setDeliveryMode('someone')"> 
+                        <span class="radio-btn"></span>
+                        Send to a Loved One
+                    </label>
+                </div>
+
+                <div class="input-group">
+                    <label for="recName" id="lblRecName">Recipient Name</label>
+                    <input type="text" id="recName" placeholder="Enter full name">
+                </div>
+                <div class="input-group">
+                    <label for="recPhone" id="lblRecPhone">Recipient Phone</label>
+                    <input type="tel" id="recPhone" placeholder="10-digit mobile number">
+                </div>
+                <div class="input-group">
+                    <label for="recAddress" id="lblRecAddress">Delivery Address</label>
+                    <textarea id="recAddress" placeholder="House/Flat No, Street, Landmark, City, Pincode" rows="3"></textarea>
+                </div>
+            </section>
+
+        </div>
+
+        <aside class="summary-wrapper">
+            <div class="summary-card receipt-style">
+                <div class="receipt-header">
+                    <h3>Your Story</h3>
+                    <p>Order Summary</p>
+                </div>
+                
+                <div class="receipt-body">
+                    <div class="summary-row">
+                        <span id="sumBaseLabel" class="item-name">Classic Box</span>
+                        <span id="sumBasePrice" class="item-price">₹199</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span id="sumPagesLabel" class="item-name">1 Page (Printed)</span>
+                        <span id="sumPagesPrice" class="item-price">₹0</span>
+                    </div>
+
+                    <div class="summary-row" id="sumAddonRow">
+                        <span class="item-name">Upgrades</span>
+                        <span id="sumAddonPrice" class="item-price">₹0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="item-name">Pan-India Courier</span>
+                        <span class="item-price">₹99</span>
+                    </div>
+                </div>
+
+                <div class="receipt-footer">
+                    <div class="summary-row total-row">
+                        <span>Grand Total</span>
+                        <span id="sumTotal">₹298</span>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="app.checkoutWhatsApp()">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Confirm via WhatsApp
+                </button>
+                
+                <p class="secure-text"><i class="fa-solid fa-lock"></i> 100% Secure Checkout • Heartory Guarantee</p>
+            </div>
+        </aside>
+
+    </main>
+
+    <section class="contact-section reveal" id="contact">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Get In Touch</h2>
+            <p class="section-subtitle" style="text-align: center;">Have a special request or bulk order? Reach out directly.</p>
+            
+            <div class="contact-grid">
+                <a href="https://instagram.com/heartorygifts" target="_blank" class="contact-card insta">
+                    <div class="contact-icon"><i class="fa-brands fa-instagram"></i></div>
+                    <h3>Instagram</h3>
+                    <p>@heartorygifts</p>
+                    <span>DM us for inspiration</span>
+                </a>
+                
+                <a href="mailto:heartorygifts@gmail.com" class="contact-card email">
+                    <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+                    <h3>Email Us</h3>
+                    <p>heartorygifts@gmail.com</p>
+                    <span>For partnerships & bulk</span>
+                </a>
+                
+                <a href="https://wa.me/918798265254" target="_blank" class="contact-card whatsapp">
+                    <div class="contact-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <h3>WhatsApp</h3>
+                    <p>+91 8798265254</p>
+                    <span>Instant chat support</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <h2 class="footer-logo">Heartory</h2>
+            <p>Every gift tells a story.</p>
+            <p class="copyright">© 2026 Heartory Gifting Co. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

@@ -9,7 +9,6 @@
     --accent-gold: #C8A97E;
     --accent-pink: #F3E1E4;
     --border-color: #E8E4DB;
-    --wa-green: #1EBE55;
     
     --font-heading: 'Cormorant Garamond', serif;
     --font-body: 'Plus Jakarta Sans', sans-serif;
@@ -110,7 +109,6 @@ h1, h2, h3, h4, .logo, .step-indicator, .footer-logo { font-family: var(--font-h
    LAYOUT, CARDS & BOX CONTENTS
    ========================================================================== */
 .container { max-width: 1300px; margin: 0 auto; padding: 4rem 5%; }
-.layout-grid { display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: start; }
 
 .card-section {
     background: var(--card-bg); padding: 3rem; border-radius: var(--radius-md);
@@ -223,11 +221,14 @@ h1, h2, h3, h4, .logo, .step-indicator, .footer-logo { font-family: var(--font-h
     transition: var(--transition); display: flex; justify-content: center; align-items: center;
     gap: 0.8rem; font-family: var(--font-body); position: relative; overflow: hidden; z-index: 1;
 }
-.btn-primary::before {
+
+/* NEW INSTAGRAM HOVER GRADIENT */
+.insta-btn::before {
     content: ''; position: absolute; top: 0; left: 0; width: 0; height: 100%;
-    background: var(--wa-green); z-index: -1; transition: var(--transition);
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    z-index: -1; transition: var(--transition);
 }
-.btn-primary:hover { color: #FFF; box-shadow: 0 10px 25px rgba(30, 190, 85, 0.3); transform: translateY(-3px);}
+.btn-primary:hover { color: #FFF; box-shadow: 0 10px 25px rgba(220, 39, 67, 0.3); transform: translateY(-3px);}
 .btn-primary:hover::before { width: 100%; }
 
 .secure-text { text-align: center; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted); }
@@ -236,7 +237,6 @@ h1, h2, h3, h4, .logo, .step-indicator, .footer-logo { font-family: var(--font-h
    CONTACT SECTION
    ========================================================================== */
 .contact-section { padding: 4rem 0 6rem; border-top: 1px solid var(--border-color); background: #FFF; }
-.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
 .contact-card {
     background: var(--bg-main); padding: 3rem 2rem; border-radius: var(--radius-md);
     text-align: center; text-decoration: none; color: var(--text-dark);
@@ -263,37 +263,25 @@ h1, h2, h3, h4, .logo, .step-indicator, .footer-logo { font-family: var(--font-h
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-/* VISIBILITY FIX: Forces the website to load visible immediately */
+/* VISIBILITY FIX */
 .reveal { opacity: 1; transform: translateY(0); transition: all 0.8s ease; }
 
 /* ==========================================================================
-   MOBILE RESPONSIVE FIXES
+   MOBILE RESPONSIVE FIXES (STACKING & ALIGNMENT)
    ========================================================================== */
 @media (max-width: 1024px) {
-    /* FIX 1: Forces the left and right sides to stack on top of each other */
     .layout-grid { grid-template-columns: 1fr; gap: 2rem; }
-    
-    /* FIX 2: Stops the summary box from floating weirdly on mobile */
     .summary-wrapper { position: static; margin-top: 1rem; }
-    
     .hero h1 { font-size: 3.5rem; }
 }
 
 @media (max-width: 768px) {
     .mobile-hide { display: none; }
-    
-    /* Centers the logo and hides the squished links */
     .nav-container { justify-content: center; padding: 1rem 5%; }
     .nav-links { display: none; } 
-    
-    /* Pulls your main text back up */
     .hero { padding: 7rem 5% 3rem; }
     .hero h1 { font-size: 2.6rem; line-height: 1.2; }
-    
-    /* FIX 3: Stacks the mode toggle buttons neatly on mobile */
     .mode-toggle-wrapper { flex-direction: column; gap: 0.5rem; }
-    
-    /* Makes the cards look perfect on small screens */
     .card-section { padding: 2rem 1.2rem; }
     .delivery-toggles { flex-direction: column; gap: 1rem; }
     .options-grid { grid-template-columns: 1fr; }
